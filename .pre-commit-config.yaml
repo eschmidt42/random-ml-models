@@ -15,12 +15,14 @@ repos:
       language: python
       types_or: [python, pyi]
       args: [--line-length=79]
+      stages: [commit]
     - id: black
       name: black
       entry: black
       language: python
       types_or: [python, pyi]
       args: [--line-length=79]
+      stages: [commit]
     - id: black-jupyter
       name: black-jupyter
       entry: black
@@ -28,6 +30,7 @@ repos:
       types_or: [python, pyi, jupyter]
       additional_dependencies: [".[jupyter]"]
       args: [--line-length=79]
+      stages: [commit]
     - id: clean-nb
       name: clean-nb
       files: \.ipynb$
@@ -37,10 +40,9 @@ repos:
     - id: pytest
       name: pytest
       entry: pytest -vx -m "not slow" src/
-      # language: python
-      # additional_dependencies: [pre-commit, pytest]
       language: system
       types: [python]
       require_serial: true
       always_run: True
       pass_filenames: false
+      stages: [commit]

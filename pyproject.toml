@@ -19,7 +19,7 @@ equinox = "^0.8.0"
 name = "torch"
 url = "https://download.pytorch.org/whl/cpu"
 default = false
-secondary = false
+secondary = true
 
 
 [tool.poetry.group.dev.dependencies]
