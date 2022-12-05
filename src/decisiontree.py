@@ -1,4 +1,5 @@
 import math
+import uuid
 from dataclasses import dataclass
 from typing import Iterable, Tuple, Union
 
@@ -72,6 +73,9 @@ class Node:
     left = None  # will be of type Node
     right = None  # will be of type Node
     reason: str = None  # place for some comment
+
+    def __post_init__(self):
+        self.id = uuid.uuid4()
 
 
 class DecisionTreeTemplate(base.BaseEstimator):
