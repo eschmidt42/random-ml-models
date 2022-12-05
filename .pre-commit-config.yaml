@@ -1,0 +1,46 @@
+# See https://pre-commit.com for more information
+# See https://pre-commit.com/hooks.html for more hooks
+repos:
+-   repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v3.2.0
+    hooks:
+    - id: end-of-file-fixer
+    - id: check-yaml
+    - id: check-added-large-files
+-   repo: local
+    hooks:
+    - id: isort
+      name: isort
+      entry: isort
+      language: python
+      types_or: [python, pyi]
+      args: [--line-length=79]
+    - id: black
+      name: black
+      entry: black
+      language: python
+      types_or: [python, pyi]
+      args: [--line-length=79]
+    - id: black-jupyter
+      name: black-jupyter
+      entry: black
+      language: python
+      types_or: [python, pyi, jupyter]
+      additional_dependencies: [".[jupyter]"]
+      args: [--line-length=79]
+    - id: clean-nb
+      name: clean-nb
+      files: \.ipynb$
+      stages: [commit]
+      language: system
+      entry: jupyter nbconvert --ClearOutputPreprocessor.enabled=True --inplace
+    - id: pytest
+      name: pytest
+      entry: pytest -vx -m "not slow" src/
+      # language: python
+      # additional_dependencies: [pre-commit, pytest]
+      language: system
+      types: [python]
+      require_serial: true
+      always_run: True
+      pass_filenames: false
