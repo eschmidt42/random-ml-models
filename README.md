@@ -19,3 +19,7 @@ poetry install
 ```bash
 pre-commit install
 ```
+
+```bash
+ln -s src nbs/src
+```
